@@ -55,23 +55,24 @@ Define deterministic, low-churn contribution rules for AI agents and humans targ
 5. Implement the change (follow `.clinerules/csharp-style-guide.md`).
 6. If code files changed, run `dotnet csharpier .`; skip this step for documentation-only updates.
 7. If code files changed, run `dotnet build` (and `dotnet test` when tests exist). For documentation-only updates (`memory-bank/*.md`, `.clinerules/*.md`, `README.md`, or other Markdown), skip build/test and instead perform a focused documentation review (tables render correctly, links resolve, cross-references stay accurate).
-8. Commit the completed task immediately using Conventional Commit format; do not begin a new task before committing.
+8. After updating all relevant memory bank files and marking the active work item as `Completed`, commit the task using Conventional Commit format. The commit summary must include the `MXX-WI-YY` identifier, and the footer must contain `Refs: MXX-WI-YY`. Do not begin a new task before this commit is created.
 9. Open a PR targeting `main`; obtain human approval.
 10. Merge via fast-forward (preferred) or approved squash.
 11. Apply version bump and tag prior to push (manual until hooks exist).
 12. Update memory bank files if architectural or workflow context changes.
 
 ### Task-Scoped Commits
-- Capture each completed task in a dedicated commit before beginning additional work.
-- Do not aggregate multiple tasks into a single commit.
-- When formatter or analyzer fixes are required after the initial commit, amend the task commit instead of creating a separate follow-up commit.
+- Capture each completed work item (WI) in exactly one primary commit before beginning additional work.
+- Do not aggregate multiple WIs into a single commit.
+- Commit summary must include the `MXX-WI-YY` identifier and the footer must include `Refs: MXX-WI-YY`.
+- When formatter or analyzer fixes are required immediately after the initial commit, amend (`git commit --amend --no-edit`) instead of creating a separate follow-up commit.
 
 ## 7. Diff Hygiene
 - Exclude generated and build artifacts (refer to `.clineignore` and `.csharpierignore`).
 - Avoid unrelated formatting churn.
 - Keep each commit narrowly aligned with its message.
 - Ensure no new analyzer warnings or errors are introduced.
-- Explicitly audit `memory-bank` and `.clinerules` diffs to confirm scope accuracy and prevent unintended context churn.
+- Explicitly audit `memory-bank` and `.clinerules` diffs to confirm scope accuracy and prevent unintended context churn, ensuring work item status transitions align with committed changes.
 
 ## 8. AI Agent Git Protocol
 1. Review relevant memory bank entries and impacted files before editing.
@@ -146,7 +147,8 @@ Adjust `activeContext.md`, `systemPatterns.md`, and `progress.md` as applicable.
 - [ ] Run `dotnet csharpier .`.
 - [ ] Run `dotnet build` (and tests when present).
 - [ ] Ensure analyzers report no new warnings/errors.
-- [ ] Verify each commit message includes the required descriptive body and applicable footers.
+- [ ] Verify each commit message includes the required descriptive body, the `MXX-WI-YY` identifier in the summary, and a `Refs: MXX-WI-YY` footer.
+- [ ] Ensure memory bank/work item status updates are completed before committing.
 - [ ] Commit after each completed task using Conventional Commit format.
 - [ ] Open PR for human review.
 - [ ] Merge via fast-forward or approved squash.
@@ -156,7 +158,7 @@ Adjust `activeContext.md`, `systemPatterns.md`, and `progress.md` as applicable.
 ### For Documentation-Only Changes
 - [ ] Sync and rebase local `main`.
 - [ ] Confirm only documentation files (`memory-bank/*.md`, `.clinerules/*.md`, `README.md`, other Markdown) are staged.
-- [ ] Review diffs for accuracy (tables render, `WI-##` identifiers unchanged, cross-file references aligned).
+- [ ] Review diffs for accuracy (tables render, `MXX-WI-YY` identifiers correct, cross-file references aligned).
 - [ ] Ensure Markdown links and anchors resolve.
 - [ ] Validate memory-bank consistency (`activeContext.md`, `progress.md`, work-item trackers).
 - [ ] Use an appropriate docs-focused Conventional Commit (e.g., `docs(process): update milestone workflow`).
@@ -164,13 +166,16 @@ Adjust `activeContext.md`, `systemPatterns.md`, and `progress.md` as applicable.
 - [ ] Open PR for human review and obtain approval.
 
 ## 18. Examples
-- Feature commit:
-  - `feat(layout): add geometry validation to export`
-    - Body: Explains ensuring width/height > 0 to prevent invalid YAML.
-- Bug fix:
-  - `fix(import): correct window matching when title casing differs`
-- Breaking change:
-  - `feat!: replace WindowSpec identifier strategy with handle resolver`
+- Feature commit (M01-WI-02):
+  - `feat(layout): add geometry validation to export M01-WI-02`
+    - Body: Explains ensuring width/height > 0 to prevent invalid YAML and lists verification commands.
+    - Footer: `Refs: M01-WI-02`
+- Bug fix (M01-WI-04):
+  - `fix(import): correct window matching when title casing differs M01-WI-04`
+    - Footer: `Refs: M01-WI-04`
+- Breaking change (M01-WI-06):
+  - `feat!: replace WindowSpec identifier strategy with handle resolver M01-WI-06`
+    - Footer: `Refs: M01-WI-06`
     - Footer: `BREAKING CHANGE: Removed title-based matching; YAML must include processPath.`
 - Release bump commit (manual):
   - `chore(release): v0.4.0`

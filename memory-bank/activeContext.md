@@ -1,24 +1,28 @@
 # Active Context
 
 ## Current Focus
-Kick off WI-02 Export Minimal after landing workspace schema, serialization, and CLI foundations from WI-01.
+Kick off M01-WI-02 Export Minimal after landing workspace schema, serialization, and CLI foundations from M01-WI-01.
 
 ## Current Branch
 main
 
 ## Recent Actions
-- Implemented `Workspace` and `WindowSpec` records with monitorId support for WI-01.
+- Implemented `Workspace` and `WindowSpec` records with monitorId support for M01-WI-01.
 - Added YamlDotNet-based serializer plus validation layer enforcing window presence and positive bounds.
 - Extended CLI with `validate` and `print` commands, including option parsing for `--file`/`-f`.
 - Authored `samples/workspace.yaml` aligned with the new schema.
 - Added unit tests covering YAML round-trip and validation failure scenarios; removed scaffold test.
 - Ran CSharpier formatting, `dotnet build`, and `dotnet test` to ensure analyzer/test cleanliness.
-- Updated `memory-bank/m1-work-items.md` marking WI-01 completed.
+- Updated `memory-bank/m1-work-items.md` marking M01-WI-01 completed.
+- Migrated work item identifiers to the zero-padded `MXX-WI-YY` format and refreshed process guides.
 
 ## Next Steps
-1. Define window enumeration and filtering approach for WI-02 Export Minimal.
+1. Define window enumeration and filtering approach for M01-WI-02 Export Minimal.
 2. Outline CLI `export` command surface and required data transformations reusing existing serializer.
-3. Investigate Win32/Windows API bindings (e.g., Vanara, PInvoke) and decide on dependency footprint for WI-02.
+3. Investigate Win32/Windows API bindings (e.g., Vanara, PInvoke) and decide on dependency footprint for M01-WI-02.
+
+## Deviations
+- Initial M01-WI-01 implementation commit referenced the legacy `WI-01` identifier; conversion to `MXX-WI-YY` completed and documented.
 
 ## Open Decisions
 - Final identifier strategy for matching launched windows (title, process, custom token).
