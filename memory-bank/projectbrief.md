@@ -40,6 +40,7 @@ Individuals who switch between distinct project contexts and want rapid environm
 
 ## Risks
 - Some applications may not expose restorable window states.
+- Some applications may not allow multiple instances open concurrently.
 - Virtual desktop APIs may be unstable.
 
 ## Next Steps

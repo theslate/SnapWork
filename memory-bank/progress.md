@@ -22,11 +22,11 @@
 - Completed M01-WI-02 Export Minimal: Win32-backed window enumeration, workspace exporter, CLI `export` command, and validation to ensure non-empty output.
 
 ## In Progress
+- Executing M01-WI-12 Virtual Desktop Scoped Save & Restore (desktop enumeration, `desktopId` persistence, CLI `--desktop` workflow, error handling, documentation, and tests).
 - Establishing CLI roadmap: command surface, argument parsing, and integration test strategy.
-- Preparing M01-WI-03 Import Minimal plan (matching strategy, reposition workflow, CLI contract).
 
 ## Pending / Next Actions
-1. Execute M01-WI-03 Import Minimal (process-name matching, reposition existing windows).
+1. Resume M01-WI-03 Import Minimal once desktop-scoped flow is stable (process-name matching, reposition existing windows).
 2. Execute M01-WI-04 Process Launch (launch + configurable retries/timeouts).
 3. Execute M01-WI-05 Virtual Desktop (error when APIs unavailable).
 4. Execute M01-WI-06 Robustness & Matching (mixed DPI support, logging levels, exit codes).
