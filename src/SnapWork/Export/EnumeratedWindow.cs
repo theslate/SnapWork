@@ -9,5 +9,6 @@ internal sealed record EnumeratedWindow(
     string Title,
     string ClassName,
     string MonitorId,
+    Guid DesktopId,
     NativeMethods.Rect Bounds
 );

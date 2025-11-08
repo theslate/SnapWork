@@ -13,6 +13,8 @@ internal interface IWindowEnumerator
 
 internal sealed class WindowEnumerator : IWindowEnumerator
 {
+    private readonly IDesktopIdProvider _desktopIdProvider;
+
     private static readonly HashSet<string> IgnoredClasses = new(StringComparer.OrdinalIgnoreCase)
     {
         "Shell_TrayWnd",
@@ -20,10 +22,17 @@ internal sealed class WindowEnumerator : IWindowEnumerator
         "Progman",
     };
 
+    public WindowEnumerator(IDesktopIdProvider desktopIdProvider)
+    {
+        ArgumentNullException.ThrowIfNull(desktopIdProvider);
+        _desktopIdProvider = desktopIdProvider;
+    }
+
     public IReadOnlyList<EnumeratedWindow> Enumerate()
     {
         List<EnumeratedWindow> windows = [];
-        GCHandle handle = GCHandle.Alloc(windows);
+        EnumerationContext context = new(_desktopIdProvider, windows);
+        GCHandle handle = GCHandle.Alloc(context);
         try
         {
             NativeMethods.EnumWindows(HandleWindow, GCHandle.ToIntPtr(handle));
@@ -47,10 +56,12 @@ internal sealed class WindowEnumerator : IWindowEnumerator
         }
 
         GCHandle handle = GCHandle.FromIntPtr(lParam);
-        if (handle.Target is not List<EnumeratedWindow> windows)
+        if (handle.Target is not EnumerationContext context)
         {
             return false;
         }
+
+        List<EnumeratedWindow> windows = context.Windows;
 
         if (!NativeMethods.IsWindowVisible(hWnd))
         {
@@ -87,7 +98,14 @@ internal sealed class WindowEnumerator : IWindowEnumerator
 
         string monitorId = ResolveMonitorId(hWnd);
 
-        windows.Add(new EnumeratedWindow(hWnd, processPath, title, className, monitorId, rect));
+        if (!context.DesktopIdProvider.TryGetDesktopId(hWnd, out Guid desktopId))
+        {
+            return true;
+        }
+
+        windows.Add(
+            new EnumeratedWindow(hWnd, processPath, title, className, monitorId, desktopId, rect)
+        );
         return true;
     }
 
@@ -158,5 +176,21 @@ internal sealed class WindowEnumerator : IWindowEnumerator
         return string.IsNullOrWhiteSpace(deviceName)
             ? "DISPLAY_UNKNOWN"
             : deviceName.ToUpperInvariant();
+    }
+
+    private sealed class EnumerationContext
+    {
+        public EnumerationContext(
+            IDesktopIdProvider desktopIdProvider,
+            List<EnumeratedWindow> windows
+        )
+        {
+            DesktopIdProvider = desktopIdProvider;
+            Windows = windows;
+        }
+
+        public IDesktopIdProvider DesktopIdProvider { get; }
+
+        public List<EnumeratedWindow> Windows { get; }
     }
 }

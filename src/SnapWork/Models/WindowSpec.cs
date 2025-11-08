@@ -10,6 +10,8 @@ public sealed record WindowSpec
 
     public required string MonitorId { get; init; }
 
+    public required string DesktopId { get; init; }
+
     public int X { get; init; }
 
     public int Y { get; init; }

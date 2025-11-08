@@ -27,6 +27,7 @@ public static class WorkspaceTests
             Assert.Equal(expected.ProcessPath, actual.ProcessPath);
             Assert.Equal(expected.Title, actual.Title);
             Assert.Equal(expected.MonitorId, actual.MonitorId);
+            Assert.Equal(expected.DesktopId, actual.DesktopId);
             Assert.Equal(expected.X, actual.X);
             Assert.Equal(expected.Y, actual.Y);
             Assert.Equal(expected.Width, actual.Width);
@@ -50,7 +51,7 @@ public static class WorkspaceTests
     {
         Workspace workspace = new()
         {
-            Version = "1.0",
+            Version = "1.1",
             GeneratedUtc = DateTime.UtcNow,
             Windows = Array.Empty<WindowSpec>(),
         };
@@ -76,6 +77,7 @@ public static class WorkspaceTests
                     ProcessPath = "app.exe",
                     Title = "Main Window",
                     MonitorId = "DISPLAY1",
+                    DesktopId = "DESKTOP-PRIMARY",
                     X = 0,
                     Y = 0,
                     Width = 800,
@@ -96,7 +98,7 @@ public static class WorkspaceTests
     private static Workspace BuildValidWorkspace() =>
         new()
         {
-            Version = "1.0",
+            Version = "1.1",
             GeneratedUtc = new DateTime(2025, 1, 1, 8, 0, 0, DateTimeKind.Utc),
             Windows = new[]
             {
@@ -105,6 +107,7 @@ public static class WorkspaceTests
                     ProcessPath = "C:\\Program Files\\App\\app.exe",
                     Title = "App",
                     MonitorId = "DISPLAY1",
+                    DesktopId = "DESKTOP-PRIMARY",
                     X = 100,
                     Y = 100,
                     Width = 1280,

@@ -14,14 +14,28 @@ internal sealed class WorkspaceExporter
 
     public WorkspaceExporter(IWindowEnumerator windowEnumerator)
     {
+        ArgumentNullException.ThrowIfNull(windowEnumerator);
         _windowEnumerator = windowEnumerator;
     }
 
-    public Workspace Export(string outputPath)
+    public Workspace Export(string outputPath, string? desktopSelector)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
 
-        IReadOnlyList<EnumeratedWindow> windows = _windowEnumerator.Enumerate();
+        IReadOnlyList<EnumeratedWindow> enumeratedWindows = _windowEnumerator.Enumerate();
+        if (enumeratedWindows.Count == 0)
+        {
+            throw new InvalidOperationException("No windows were detected to export.");
+        }
+
+        List<EnumeratedWindow> windows = enumeratedWindows.ToList();
+        Guid? targetDesktop = DesktopSelectionResolver.Resolve(windows, desktopSelector);
+
+        if (targetDesktop.HasValue)
+        {
+            windows = windows.Where(window => window.DesktopId == targetDesktop.Value).ToList();
+        }
+
         if (windows.Count == 0)
         {
             throw new InvalidOperationException("No windows were detected to export.");
@@ -29,7 +43,7 @@ internal sealed class WorkspaceExporter
 
         Workspace workspace = new()
         {
-            Version = "1.0",
+            Version = "1.1",
             GeneratedUtc = DateTime.UtcNow,
             Windows = windows.Select(ToWindowSpec).ToList(),
         };
@@ -59,6 +73,7 @@ internal sealed class WorkspaceExporter
             Arguments = null,
             Title = window.Title,
             MonitorId = window.MonitorId,
+            DesktopId = window.DesktopId.ToString(),
             X = window.Bounds.Left,
             Y = window.Bounds.Top,
             Width = window.Bounds.Width,

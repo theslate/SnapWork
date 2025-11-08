@@ -22,11 +22,10 @@
 - Completed M01-WI-02 Export Minimal: Win32-backed window enumeration, workspace exporter, CLI `export` command, and validation to ensure non-empty output.
 
 ## In Progress
-- Executing M01-WI-12 Virtual Desktop Scoped Save & Restore (desktop enumeration, `desktopId` persistence, CLI `--desktop` workflow, error handling, documentation, and tests).
 - Establishing CLI roadmap: command surface, argument parsing, and integration test strategy.
 
 ## Pending / Next Actions
-1. Resume M01-WI-03 Import Minimal once desktop-scoped flow is stable (process-name matching, reposition existing windows).
+1. Resume M01-WI-03 Import Minimal now that desktop-scoped export is complete (process-name matching, reposition existing windows).
 2. Execute M01-WI-04 Process Launch (launch + configurable retries/timeouts).
 3. Execute M01-WI-05 Virtual Desktop (error when APIs unavailable).
 4. Execute M01-WI-06 Robustness & Matching (mixed DPI support, logging levels, exit codes).
@@ -39,6 +38,7 @@
 3. M02-WI-03 Metrics & Tracing – introduce observability hooks for critical operations.
 
 ## Known Issues / Risks
+- Desktop-scoped import remains outstanding; export currently filters correctly but layout reapplication still requires M01-WI-03 implementation.
 - Reliability of Virtual Desktop COM interactions, especially when enforcing hard errors on unsupported systems.
 - Variability in process-name-based window identification across third-party apps.
 - Timing delays for window readiness may require adaptive strategies with configurable timeouts.
@@ -47,3 +47,4 @@
 - Keep proof of concept lean; focus on core export/import loop before adding advanced features.
 - Monitor for changes requiring updates to systemPatterns or techContext.
 - Documentation-only commits can omit work item identifiers when they do not advance a specific tracked item, reducing friction for routine updates.
+- M01-WI-12 completed 2025-11-08: desktop-scoped export (`--desktop`), COM provider fallback to exit codes, tests, README update.

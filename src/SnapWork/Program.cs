@@ -34,6 +34,16 @@ public static class Program
                 _ => HandleUnknownCommand(command),
             };
         }
+        catch (DesktopSelectionException exception)
+        {
+            Console.Error.WriteLine($"Desktop selection error: {exception.Message}");
+            return 3;
+        }
+        catch (VirtualDesktopNotSupportedException exception)
+        {
+            Console.Error.WriteLine($"Virtual desktop is unsupported: {exception.Message}");
+            return 4;
+        }
         catch (Exception exception)
         {
             Console.Error.WriteLine($"Error: {exception.Message}");
@@ -92,10 +102,16 @@ public static class Program
             return 1;
         }
 
-        var exporter = new WorkspaceExporter(new WindowEnumerator());
-        Workspace workspace = exporter.Export(filePath);
+        string? desktopSelector = ResolveDesktopSelector(args);
+        var exporter = new WorkspaceExporter(CreateWindowEnumerator());
+        Workspace workspace = exporter.Export(filePath, desktopSelector);
 
         Console.WriteLine($"Exported {workspace.Windows.Count} window(s) to '{filePath}'.");
+        if (!string.IsNullOrWhiteSpace(desktopSelector))
+        {
+            Console.WriteLine($"Desktop selector: {desktopSelector}");
+        }
+
         return 0;
     }
 
@@ -183,6 +199,44 @@ public static class Program
         return null;
     }
 
+    private static string? ResolveDesktopSelector(string[] args)
+    {
+        const string option = "--desktop";
+
+        for (int index = 1; index < args.Length; index++)
+        {
+            string current = args[index];
+
+            if (IsOptionMatch(current, option))
+            {
+                if (index + 1 < args.Length)
+                {
+                    return args[index + 1];
+                }
+
+                return null;
+            }
+
+            string? assigned = ExtractAssignedValue(current, option);
+            if (!string.IsNullOrWhiteSpace(assigned))
+            {
+                return assigned;
+            }
+        }
+
+        return null;
+    }
+
+    private static IWindowEnumerator CreateWindowEnumerator()
+    {
+        if (!OperatingSystem.IsWindows())
+        {
+            throw new VirtualDesktopNotSupportedException("Virtual desktops require Windows.");
+        }
+
+        return new WindowEnumerator(new ComDesktopIdProvider());
+    }
+
     private static void PrintUsage()
     {
         Console.WriteLine("Usage: snapwork <command> [options]");
@@ -196,5 +250,8 @@ public static class Program
         Console.WriteLine();
         Console.WriteLine("Options:");
         Console.WriteLine("  --file, -f <path>   Path to workspace YAML file.");
+        Console.WriteLine(
+            "  --desktop <index|guid>   Filter export to a specific virtual desktop."
+        );
     }
 }
