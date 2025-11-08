@@ -16,14 +16,18 @@ main
 - Updated `memory-bank/m1-work-items.md` marking M01-WI-01 completed.
 - Migrated work item identifiers to the zero-padded `MXX-WI-YY` format and refreshed process guides.
 - Captured user guidance for M01 mandatory work items and deferred optional backlog to milestone M02.
+- Migrated optional M1 backlog entries into dedicated milestone tracking under `memory-bank/m02-work-items.md`.
+- Refined git workflow policy so work item identifiers remain required for commits implementing tracked items and optional for generalized documentation updates.
 
 ## Next Steps
 1. Select the window enumeration dependency within the preferred order (.NET APIs, then vetted NuGet packages, then public Win32 interop) and finalize filtering rules for M01-WI-02.
 2. Design the CLI `export` command flow with serializer reuse and configurable timeout plumbing to support downstream import/process launch work.
 3. Plan documentation deliverables under M01-WI-08 while keeping automated tests optional for the milestone.
+4. Defer newly migrated optional backlog to Milestone M2 until mandatory M1 work items complete.
 
 ## Deviations
 - Initial M01-WI-01 implementation commit referenced the legacy `WI-01` identifier; conversion to `MXX-WI-YY` completed and documented.
+- Optional backlog relocated from M1 tracker to M2 milestone without deprecation.
 
 ## Open Decisions
 - Choose the concrete window enumeration implementation that fits the preferred dependency order without expanding scope unnecessarily.

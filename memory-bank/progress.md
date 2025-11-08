@@ -17,6 +17,8 @@
 - Authored `.clinerules/agent-process-guide.md` to govern milestone workflow.
 - Completed M01-WI-01 Schema & Models: domain records with monitorId, YAML serializer, validation, CLI validate/print commands, sample YAML, and unit tests.
 - Captured M01 mandatory work item guidance (APIs, matching, timeouts, virtual desktop policy, DPI/logging expectations) and deferred optional backlog to M02.
+- Migrated optional backlog entries into `memory-bank/m02-work-items.md` for dedicated milestone tracking.
+- Clarified git workflow guidance so work item identifiers remain required when implementing tracked items and optional for generalized documentation updates.
 
 ## In Progress
 - Establishing CLI roadmap: command surface, argument parsing, and integration test strategy.
@@ -30,7 +32,11 @@
 5. Execute M01-WI-06 Robustness & Matching (mixed DPI support, logging levels, exit codes).
 6. Execute M01-WI-07 Validation & Dry Run (PoC-focused validation enhancements, dry-run output).
 7. Execute M01-WI-08 Tests & Documentation (documentation mandatory; automated tests optional).
-8. Plan optional backlog (M01-WI-09..M01-WI-11) for milestone M02.
+
+### Upcoming Milestone M2 (post-M01)
+1. M02-WI-01 FluentValidation Integration – structure validation messages with FluentValidation summaries.
+2. M02-WI-02 Serilog Enrichers – add contextual enrichers for structured logging.
+3. M02-WI-03 Metrics & Tracing – introduce observability hooks for critical operations.
 
 ## Known Issues / Risks
 - Reliability of Virtual Desktop COM interactions, especially when enforcing hard errors on unsupported systems.
@@ -40,3 +46,4 @@
 ## Notes
 - Keep proof of concept lean; focus on core export/import loop before adding advanced features.
 - Monitor for changes requiring updates to systemPatterns or techContext.
+- Documentation-only commits can omit work item identifiers when they do not advance a specific tracked item, reducing friction for routine updates.
