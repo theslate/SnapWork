@@ -10,7 +10,7 @@
 - Captured system architecture patterns and component responsibilities.
 - Recorded technical stack assumptions and dependencies.
 - Logged current focus, recent actions, and immediate next steps.
-- Generated SnapWork solution with CLI and test projects targeting .NET 8.
+- Generated SnapWork solution with CLI and test projects targeting .NET 9.
 - Added shared build props, root bin/obj paths, README, and placeholder CLI entry point.
 - Restored packages, executed build/test pipeline, and formatted sources with CSharpier.
 

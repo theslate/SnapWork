@@ -2,6 +2,8 @@
 
 Version 0.0.1 scaffold for the SnapWork command-line interface.
 
+Requires the .NET 9 SDK.
+
 ## Build
 
 ```bash

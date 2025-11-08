@@ -7,7 +7,7 @@ Build the initial SnapWork CLI scaffold and shared configuration to support upco
 main
 
 ## Recent Actions
-- Created the SnapWork solution with CLI and test projects targeting .NET 8.
+- Created the SnapWork solution with CLI and test projects targeting .NET 9.
 - Added shared Directory.Build.props to centralize version, warnings, and unified bin/obj paths.
 - Implemented placeholder async entry point emitting scaffold banner text.
 - Restored packages, built, tested, and formatted the solution with CSharpier.
