@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Focus
-Build the initial SnapWork CLI scaffold and shared configuration to support upcoming command implementations.
+Establish milestone documentation for PoC (M1) and baseline memory bank entries before starting WI-01 implementation.
 
 ## Current Branch
 main
@@ -11,11 +11,14 @@ main
 - Added shared Directory.Build.props to centralize version, warnings, and unified bin/obj paths.
 - Implemented placeholder async entry point emitting scaffold banner text.
 - Restored packages, built, tested, and formatted the solution with CSharpier.
+- Drafted PoC work item breakdown during Plan mode.
+- Recorded M1 work items in `memory-bank/m1-work-items.md`.
+- Authored `.clinerules/agent-process-guide.md` to govern milestone workflows.
 
 ## Next Steps
-1. Define the CLI command surface (export/import scaffolding, help text).
-2. Select argument parsing strategy (built-in, `System.CommandLine`, or custom dispatcher).
-3. Establish baseline integration tests for CLI behavior.
+1. Confirm documentation baseline and handoff for WI-01 start.
+2. Plan WI-01 implementation scope (schema/models) once documentation is approved.
+3. Revisit CLI command surface decisions after WI-01 groundwork is complete.
 
 ## Open Decisions
 - Final identifier strategy for matching launched windows (title, process, custom token).

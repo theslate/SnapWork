@@ -53,8 +53,8 @@ Define deterministic, low-churn contribution rules for AI agents and humans targ
 3. `git pull --rebase origin main`
 4. Optional: `git switch -c feature/<slug>`
 5. Implement the change (follow `.clinerules/csharp-style-guide.md`).
-6. Run `dotnet csharpier .`
-7. Run `dotnet build` (and `dotnet test` when tests exist).
+6. If code files changed, run `dotnet csharpier .`; skip this step for documentation-only updates.
+7. If code files changed, run `dotnet build` (and `dotnet test` when tests exist). For documentation-only updates (`memory-bank/*.md`, `.clinerules/*.md`, `README.md`, or other Markdown), skip build/test and instead perform a focused documentation review (tables render correctly, links resolve, cross-references stay accurate).
 8. Commit the completed task immediately using Conventional Commit format; do not begin a new task before committing.
 9. Open a PR targeting `main`; obtain human approval.
 10. Merge via fast-forward (preferred) or approved squash.
@@ -71,14 +71,15 @@ Define deterministic, low-churn contribution rules for AI agents and humans targ
 - Avoid unrelated formatting churn.
 - Keep each commit narrowly aligned with its message.
 - Ensure no new analyzer warnings or errors are introduced.
+- Explicitly audit `memory-bank` and `.clinerules` diffs to confirm scope accuracy and prevent unintended context churn.
 
 ## 8. AI Agent Git Protocol
 1. Review relevant memory bank entries and impacted files before editing.
 2. Plan minimal edits; avoid broad rewrites.
 3. Apply changes and save.
-4. Run `dotnet csharpier .`.
-5. Run `dotnet build` (and tests when available).
-6. Resolve all diagnostics triggered by the change.
+4. If code files changed, run `dotnet csharpier .`; otherwise verify Markdown formatting and table integrity.
+5. If code files changed, run `dotnet build` (and tests when available). For documentation-only updates (`memory-bank/*.md`, `.clinerules/*.md`, `README.md`, other Markdown), skip build/test and instead confirm tables, identifiers, and links remain accurate.
+6. Resolve all diagnostics triggered by code changes (not applicable for documentation-only updates).
 7. Stage only intended files.
 8. Commit the completed task immediately using a Conventional Commit message; do not batch multiple tasks into a single commit.
 9. Amend the commit (`git commit --amend --no-edit`) if formatting or analyzer fixes add further changes.
@@ -137,6 +138,8 @@ Adjust `activeContext.md`, `systemPatterns.md`, and `progress.md` as applicable.
 - Until implemented, perform manual version bumping and tagging per Section 5.
 
 ## 17. Contribution Checklist
+
+### For Code Changes
 - [ ] Sync and rebase local `main`.
 - [ ] Branch if change spans multiple commits.
 - [ ] Implement minimal scoped change.
@@ -149,6 +152,16 @@ Adjust `activeContext.md`, `systemPatterns.md`, and `progress.md` as applicable.
 - [ ] Merge via fast-forward or approved squash.
 - [ ] Apply version bump and tag release (manual for now).
 - [ ] Update memory bank entries if context changed.
+
+### For Documentation-Only Changes
+- [ ] Sync and rebase local `main`.
+- [ ] Confirm only documentation files (`memory-bank/*.md`, `.clinerules/*.md`, `README.md`, other Markdown) are staged.
+- [ ] Review diffs for accuracy (tables render, `WI-##` identifiers unchanged, cross-file references aligned).
+- [ ] Ensure Markdown links and anchors resolve.
+- [ ] Validate memory-bank consistency (`activeContext.md`, `progress.md`, work-item trackers).
+- [ ] Use an appropriate docs-focused Conventional Commit (e.g., `docs(process): update milestone workflow`).
+- [ ] Document any policy changes in the PR description (flag as `Doc-Policy-Change` when guidance shifts).
+- [ ] Open PR for human review and obtain approval.
 
 ## 18. Examples
 - Feature commit:
@@ -165,3 +178,14 @@ Adjust `activeContext.md`, `systemPatterns.md`, and `progress.md` as applicable.
 
 ## 19. Deviation Policy
 Document any temporary deviations in the PR description and record them in `activeContext.md`. Remove deviation notes once normal workflow resumes.
+
+## 20. Documentation-Only Changes
+- Scope: Updates limited to `memory-bank/*.md`, `.clinerules/*.md`, `README.md`, or other Markdown guidance files.
+- Requirements:
+  - Ensure no code, project, or build script files are modified.
+  - Skip `dotnet build` / `dotnet test`; rely on targeted documentation verification instead.
+  - Review rendered tables, numbering (e.g., `WI-##`), and cross-document consistency.
+  - Maintain alignment across memory-bank entries (`activeContext`, `progress`, work-item trackers).
+  - Use `docs(<area>)` or `chore(doc-process)` commits to capture context changes.
+  - Call out process or policy changes explicitly in the PR description.
+  - Documentation-only updates still require human review before merging.
