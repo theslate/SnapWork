@@ -1,0 +1,47 @@
+# Build / compilation
+bin/
+obj/
+artifacts/
+
+# Generated sources
+**/*.g.cs
+**/*.designer.cs
+**/Generated/*
+**/Migrations/**
+**/*AssemblyInfo.cs
+
+# Packaging outputs
+*.nupkg
+*.snupkg
+*.nuspec
+
+# Test + coverage
+TestResults/
+coverage/
+*.coverage*
+*.trx
+
+# Logs & patches
+*.log
+*.tlog
+*.orig
+*.rej
+
+# IDE user-specific
+*.user
+*.suo
+*.userosscache
+*.rsuser
+*.sln.docstates
+
+# IDE metadata
+.vs/
+.idea/
+.vscode/
+
+# OS cruft
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.DS_Store

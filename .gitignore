@@ -1,0 +1,58 @@
+# SnapWork ignore patterns
+
+# Build artifacts
+bin/
+obj/
+artifacts/
+
+# Generated sources
+**/*.g.cs
+**/*.designer.cs
+**/Generated/*
+**/Migrations/**
+**/*AssemblyInfo.cs
+
+# Packaging
+*.nupkg
+*.snupkg
+*.nuspec
+
+# Test output
+TestResults/
+coverage/
+*.coverage*
+*.trx
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.rsuser
+*.sln.docstates
+
+# Visual Studio
+.vs/
+*.vc.db
+*.vc.VC.opendb
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+*.tlog
+
+# Operating system files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.DS_Store
+
+# Patch artifacts
+*.orig
+*.rej

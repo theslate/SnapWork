@@ -1,0 +1,16 @@
+# Build artifacts
+bin/
+obj/
+
+# Generated sources
+**/*.g.cs
+**/*.designer.cs
+**/Generated/*
+**/Migrations/**
+
+# Tool outputs
+coverage/
+TestResults/
+
+# Assembly info and auto-generated metadata
+**/*AssemblyInfo.cs

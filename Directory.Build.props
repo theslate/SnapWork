@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <RootDir>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</RootDir>
+    <Version>0.0.1</Version>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <BaseOutputPath>$(RootDir)bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(RootDir)obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>
