@@ -4,7 +4,7 @@ Milestone **M1** tracks proof-of-concept deliverables. Update Status (`Pending`,
 
 | ID | Title | Status | Description | Deliverables | Acceptance | Notes |
 |----|-------|--------|-------------|--------------|------------|-------|
-| WI-01 | Schema & Models | Pending | Define workspace/window specification, sample file, and serialization pathways. | `Workspace` and `WindowSpec` models, sample `workspace.yaml`, CLI `validate` and `print`. | Round-trip preserves data; invalid empty windows exit with code 1. | |
+| WI-01 | Schema & Models | Completed | Define workspace/window specification, sample file, and serialization pathways. | `Workspace` and `WindowSpec` models, sample `workspace.yaml`, CLI `validate` and `print`. | Round-trip preserves data; invalid empty windows exit with code 1. | Implemented YAML serializer, validation, commands, tests. |
 | WI-02 | Export Minimal | Pending | Enumerate visible top-level windows and capture metadata for export. | CLI `export` command, window enumeration with filtering. | Export produces non-empty YAML with ≥1 window entry. | |
 | WI-03 | Import Minimal | Pending | Reapply saved layout onto current desktop without launching new processes. | CLI `import` command (current desktop), window matching + positioning. | At least one window repositioned; missing windows logged; exit 0 when any window succeeds. | |
 | WI-04 | Process Launch | Pending | Launch absent processes and wait for associated windows before positioning. | Process launch logic, `startupDelay` support, retry policy. | Newly launched window positioned; timeout triggers exit code 2. | |

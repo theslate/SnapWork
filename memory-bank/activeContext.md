@@ -1,29 +1,30 @@
 # Active Context
 
 ## Current Focus
-Establish milestone documentation for PoC (M1) and baseline memory bank entries before starting WI-01 implementation.
+Kick off WI-02 Export Minimal after landing workspace schema, serialization, and CLI foundations from WI-01.
 
 ## Current Branch
 main
 
 ## Recent Actions
-- Created the SnapWork solution with CLI and test projects targeting .NET 9.
-- Added shared Directory.Build.props to centralize version, warnings, and unified bin/obj paths.
-- Implemented placeholder async entry point emitting scaffold banner text.
-- Restored packages, built, tested, and formatted the solution with CSharpier.
-- Drafted PoC work item breakdown during Plan mode.
-- Recorded M1 work items in `memory-bank/m1-work-items.md`.
-- Authored `.clinerules/agent-process-guide.md` to govern milestone workflows.
+- Implemented `Workspace` and `WindowSpec` records with monitorId support for WI-01.
+- Added YamlDotNet-based serializer plus validation layer enforcing window presence and positive bounds.
+- Extended CLI with `validate` and `print` commands, including option parsing for `--file`/`-f`.
+- Authored `samples/workspace.yaml` aligned with the new schema.
+- Added unit tests covering YAML round-trip and validation failure scenarios; removed scaffold test.
+- Ran CSharpier formatting, `dotnet build`, and `dotnet test` to ensure analyzer/test cleanliness.
+- Updated `memory-bank/m1-work-items.md` marking WI-01 completed.
 
 ## Next Steps
-1. Confirm documentation baseline and handoff for WI-01 start.
-2. Plan WI-01 implementation scope (schema/models) once documentation is approved.
-3. Revisit CLI command surface decisions after WI-01 groundwork is complete.
+1. Define window enumeration and filtering approach for WI-02 Export Minimal.
+2. Outline CLI `export` command surface and required data transformations reusing existing serializer.
+3. Investigate Win32/Windows API bindings (e.g., Vanara, PInvoke) and decide on dependency footprint for WI-02.
 
 ## Open Decisions
 - Final identifier strategy for matching launched windows (title, process, custom token).
 - Retry timing and timeout thresholds for window readiness.
-- Level of validation required in PoC phase.
+- Dependency choice for window enumeration (custom P/Invoke vs. managed helper libraries) ahead of WI-02.
+- Level of validation required in PoC phase beyond current bounds/process checks.
 - Command routing approach (switch, dispatcher, or parser library).
 
 ## Assumptions

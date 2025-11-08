@@ -1,0 +1,17 @@
+version: "1.0"
+generatedUtc: 2025-01-01T08:00:00Z
+windows:
+  - processPath: "C:\\Program Files\\Notepad++\\notepad++.exe"
+    title: "Notes.txt - Notepad++"
+    monitorId: "DISPLAY1"
+    x: 120
+    y: 80
+    width: 1024
+    height: 768
+  - processPath: "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe"
+    title: "Project Dashboard - Microsoft Edge"
+    monitorId: "DISPLAY2"
+    x: 2200
+    y: 100
+    width: 1440
+    height: 900
