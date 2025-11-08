@@ -1,4 +1,5 @@
 ﻿using System;
+using SnapWork.Export;
 using SnapWork.Models;
 using SnapWork.Serialization;
 using SnapWork.Validation;
@@ -29,6 +30,7 @@ public static class Program
             {
                 "validate" => RunValidate(args),
                 "print" => RunPrint(args),
+                "export" => RunExport(args),
                 _ => HandleUnknownCommand(command),
             };
         }
@@ -79,6 +81,21 @@ public static class Program
         }
 
         Console.WriteLine("Workspace is valid.");
+        return 0;
+    }
+
+    private static int RunExport(string[] args)
+    {
+        string? filePath = GetRequiredFilePath(args);
+        if (filePath is null)
+        {
+            return 1;
+        }
+
+        var exporter = new WorkspaceExporter(new WindowEnumerator());
+        Workspace workspace = exporter.Export(filePath);
+
+        Console.WriteLine($"Exported {workspace.Windows.Count} window(s) to '{filePath}'.");
         return 0;
     }
 
@@ -173,6 +190,9 @@ public static class Program
         Console.WriteLine("Commands:");
         Console.WriteLine("  validate   Validates a workspace definition.");
         Console.WriteLine("  print      Prints workspace details.");
+        Console.WriteLine(
+            "  export     Captures the current desktop layout into a workspace file."
+        );
         Console.WriteLine();
         Console.WriteLine("Options:");
         Console.WriteLine("  --file, -f <path>   Path to workspace YAML file.");

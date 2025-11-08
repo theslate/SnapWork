@@ -1,7 +1,10 @@
-docs(process): document M2 backlog and clarify ID policy
+feat(export): implement M01-WI-02 export command
 
-- Added milestone M2 work-item tracker and migrated optional backlog details from M1.
-- Updated active context and progress notes to capture new milestone scope and commit identifier guidance.
-- Refined git workflow guide so work item identifiers stay required when completing tracked items and optional for generalized documentation updates.
+- Added Win32-backed window enumeration, snapshots, and exporter to capture desktop layout into YAML.
+- Extended CLI with the export command and supporting option handling.
+- Introduced FakeItEasy-based exporter unit test and internals exposure for test assemblies.
+- Documented M01-WI-02 completion across memory bank tracker, active context, and progress notes.
 
-Verification: Reviewed Markdown diffs; no code changes.
+Verification: csharpier format ., dotnet build, dotnet test
+
+Refs: M01-WI-02

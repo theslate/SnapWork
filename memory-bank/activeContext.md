@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Focus
-Kick off M01-WI-02 Export Minimal leveraging clarified API preferences and process-name matching after landing workspace schema, serialization, and CLI foundations from M01-WI-01.
+Execute M01-WI-03 Import Minimal now that the export pipeline (enumeration, serialization, CLI command) is in place from M01-WI-02.
 
 ## Current Branch
 main
@@ -14,16 +14,20 @@ main
 - Added unit tests covering YAML round-trip and validation failure scenarios; removed scaffold test.
 - Ran CSharpier formatting, `dotnet build`, and `dotnet test` to ensure analyzer/test cleanliness.
 - Updated `memory-bank/m1-work-items.md` marking M01-WI-01 completed.
+- Implemented M01-WI-02 export flow (Win32-backed window enumeration, workspace exporter, CLI `export` command) and produced validated YAML output.
 - Migrated work item identifiers to the zero-padded `MXX-WI-YY` format and refreshed process guides.
 - Captured user guidance for M01 mandatory work items and deferred optional backlog to milestone M02.
 - Migrated optional M1 backlog entries into dedicated milestone tracking under `memory-bank/m02-work-items.md`.
 - Refined git workflow policy so work item identifiers remain required for commits implementing tracked items and optional for generalized documentation updates.
 
 ## Next Steps
-1. Select the window enumeration dependency within the preferred order (.NET APIs, then vetted NuGet packages, then public Win32 interop) and finalize filtering rules for M01-WI-02.
-2. Design the CLI `export` command flow with serializer reuse and configurable timeout plumbing to support downstream import/process launch work.
-3. Plan documentation deliverables under M01-WI-08 while keeping automated tests optional for the milestone.
-4. Defer newly migrated optional backlog to Milestone M2 until mandatory M1 work items complete.
+1. Execute M01-WI-03 Import Minimal by adding layout application logic that matches saved windows to live processes (process-name first with title fallback), repositions them using Win32 APIs, and exposes an `import` CLI command operating on the current desktop.
+2. Execute M01-WI-04 Process Launch by extending import to start missing processes, wait with configurable retries/timeouts, and reuse placement once windows appear while surfacing exit code 2 for timeouts.
+3. Execute M01-WI-05 Virtual Desktop by introducing virtual desktop orchestration with a default-on `--new-desktop` flag, graceful fallback when COM APIs are unavailable, and explicit erroring on unsupported platforms.
+4. Execute M01-WI-06 Robustness & Matching by normalizing DPI/scale, refining matching (case-insensitive, monitor-aware), layering Serilog logging with selectable verbosity, and finalizing exit-code mapping.
+5. Execute M01-WI-07 Validation & Dry Run by extending validation rules (bounds/process path existence), plumbing a `--dry-run` option that outputs planned actions without mutation, and ensuring shared validation across commands.
+6. Execute M01-WI-08 Tests & Documentation by expanding unit coverage (enumeration, import planners, validation), adding a smoke script or walkthrough, refreshing README usage docs, and updating the memory bank with outcomes.
+7. Keep M02 optional backlog deferred until all mandatory M01 items are completed and archived per process guide.
 
 ## Deviations
 - Initial M01-WI-01 implementation commit referenced the legacy `WI-01` identifier; conversion to `MXX-WI-YY` completed and documented.

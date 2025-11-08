@@ -19,19 +19,19 @@
 - Captured M01 mandatory work item guidance (APIs, matching, timeouts, virtual desktop policy, DPI/logging expectations) and deferred optional backlog to M02.
 - Migrated optional backlog entries into `memory-bank/m02-work-items.md` for dedicated milestone tracking.
 - Clarified git workflow guidance so work item identifiers remain required when implementing tracked items and optional for generalized documentation updates.
+- Completed M01-WI-02 Export Minimal: Win32-backed window enumeration, workspace exporter, CLI `export` command, and validation to ensure non-empty output.
 
 ## In Progress
 - Establishing CLI roadmap: command surface, argument parsing, and integration test strategy.
-- Preparing M01-WI-02 Export Minimal plan (window enumeration approach, dependency selection, CLI contract).
+- Preparing M01-WI-03 Import Minimal plan (matching strategy, reposition workflow, CLI contract).
 
 ## Pending / Next Actions
-1. Execute M01-WI-02 Export Minimal (window enumeration + export command with preferred dependency ordering).
-2. Execute M01-WI-03 Import Minimal (process-name matching, reposition existing windows).
-3. Execute M01-WI-04 Process Launch (launch + configurable retries/timeouts).
-4. Execute M01-WI-05 Virtual Desktop (error when APIs unavailable).
-5. Execute M01-WI-06 Robustness & Matching (mixed DPI support, logging levels, exit codes).
-6. Execute M01-WI-07 Validation & Dry Run (PoC-focused validation enhancements, dry-run output).
-7. Execute M01-WI-08 Tests & Documentation (documentation mandatory; automated tests optional).
+1. Execute M01-WI-03 Import Minimal (process-name matching, reposition existing windows).
+2. Execute M01-WI-04 Process Launch (launch + configurable retries/timeouts).
+3. Execute M01-WI-05 Virtual Desktop (error when APIs unavailable).
+4. Execute M01-WI-06 Robustness & Matching (mixed DPI support, logging levels, exit codes).
+5. Execute M01-WI-07 Validation & Dry Run (PoC-focused validation enhancements, dry-run output).
+6. Execute M01-WI-08 Tests & Documentation (documentation mandatory; automated tests optional).
 
 ### Upcoming Milestone M2 (post-M01)
 1. M02-WI-01 FluentValidation Integration – structure validation messages with FluentValidation summaries.
