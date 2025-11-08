@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Focus
-Kick off M01-WI-02 Export Minimal after landing workspace schema, serialization, and CLI foundations from M01-WI-01.
+Kick off M01-WI-02 Export Minimal leveraging clarified API preferences and process-name matching after landing workspace schema, serialization, and CLI foundations from M01-WI-01.
 
 ## Current Branch
 main
@@ -15,21 +15,21 @@ main
 - Ran CSharpier formatting, `dotnet build`, and `dotnet test` to ensure analyzer/test cleanliness.
 - Updated `memory-bank/m1-work-items.md` marking M01-WI-01 completed.
 - Migrated work item identifiers to the zero-padded `MXX-WI-YY` format and refreshed process guides.
+- Captured user guidance for M01 mandatory work items and deferred optional backlog to milestone M02.
 
 ## Next Steps
-1. Define window enumeration and filtering approach for M01-WI-02 Export Minimal.
-2. Outline CLI `export` command surface and required data transformations reusing existing serializer.
-3. Investigate Win32/Windows API bindings (e.g., Vanara, PInvoke) and decide on dependency footprint for M01-WI-02.
+1. Select the window enumeration dependency within the preferred order (.NET APIs, then vetted NuGet packages, then public Win32 interop) and finalize filtering rules for M01-WI-02.
+2. Design the CLI `export` command flow with serializer reuse and configurable timeout plumbing to support downstream import/process launch work.
+3. Plan documentation deliverables under M01-WI-08 while keeping automated tests optional for the milestone.
 
 ## Deviations
 - Initial M01-WI-01 implementation commit referenced the legacy `WI-01` identifier; conversion to `MXX-WI-YY` completed and documented.
 
 ## Open Decisions
-- Final identifier strategy for matching launched windows (title, process, custom token).
-- Retry timing and timeout thresholds for window readiness.
-- Dependency choice for window enumeration (custom P/Invoke vs. managed helper libraries) ahead of WI-02.
-- Level of validation required in PoC phase beyond current bounds/process checks.
-- Command routing approach (switch, dispatcher, or parser library).
+- Choose the concrete window enumeration implementation that fits the preferred dependency order without expanding scope unnecessarily.
+- Define retry timing and configurable timeout defaults for window readiness and process launch workflows.
+- Determine the depth of additional validation rules to include under M01-WI-07 beyond current bounds/process checks.
+- Establish the command routing approach (switch, dispatcher, or parser library) for the growing CLI surface.
 
 ## Assumptions
 - Windows apps expose stable titles or handles for identification.
